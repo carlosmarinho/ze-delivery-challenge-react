@@ -1,0 +1,12 @@
+{
+  "name": "ze-delivery-graphql",
+  "version": "1.0.0",
+  "description": "Prova para o Zé delivery",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Carlos Marinho",
+  "license": "ISC"
+}
