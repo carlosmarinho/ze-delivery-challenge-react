@@ -5,7 +5,10 @@ module.exports = {
     "entry": "./src/index.js",
     "output": {
         "path": __dirname + '/dir',
-        "filename": "bundle.js"
+        "filename": "bundle.js",
+    },
+    "devServer": {
+        "historyApiFallback": true
     },
     "devtool": "source-map",
     "module": {
