@@ -5,6 +5,7 @@ import { ApolloClient, InMemoryCache } from 'apollo-boost';
 import { createHttpLink } from 'apollo-link-http';
 
 import Home from '../pages/home';
+import Header from './common/Header';
 // const Home = () => <div>Meu App</div>
 const Products = () => <div>Meus Produtos</div>
 
@@ -22,6 +23,7 @@ const client = new ApolloClient({
 const App = () => {
     return (
         <ApolloProvider client={client}>
+            <Header />
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={Home} />
