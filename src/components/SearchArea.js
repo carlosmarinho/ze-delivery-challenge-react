@@ -15,9 +15,15 @@ const SearchAreaWrapper = styled.div`
 
     h1{
         margin-top: 100px;
-        max-width: 592px;
+        max-width: 340px;
         font-size: 36px;
         text-align: center;
+    }
+
+    @media(min-width: 700px) {
+        h1 {
+            max-width: 592px;
+        }
     }
 
     
@@ -25,10 +31,14 @@ const SearchAreaWrapper = styled.div`
 
 
 const SearchBoxWrapper = styled.div`
-    max-width: 592px;
+    max-width: 340px;
     width: 100%;   
     /* background: #fff; */
     /* border: none; */
+
+    @media(min-width: 700px) {
+        max-width: 592px;
+    }
 `
 
 const SearchArea = () => {

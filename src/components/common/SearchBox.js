@@ -19,13 +19,17 @@ const SearchBoxWrapper = styled.div`
     }
 
     input {
-        width: 90%;
+        width: 80%;
         height: 100%;
         border: none;
     }
 
     input:focus {
         outline: none;
+    }
+
+    @media(min-width: 700px) {
+        width: 90%
     }
 
 `
