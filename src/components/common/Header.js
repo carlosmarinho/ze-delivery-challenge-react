@@ -8,7 +8,7 @@ const HeaderWrapper = styled.div`
     background: black;
     color: #fff;
     height: 70px;
-    align-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 0 5%;
 `;
@@ -21,12 +21,28 @@ const Logo = styled.div`
     }
 `;
 
+const LoginArea = styled.div`
+    border: 1px solid #FFC500;
+    border-radius: 24px;
+    padding: 10px;
+    color: #FFC500;
+
+    :hover{
+        background: #FFC500;
+        color: #000;
+    }
+    
+`
+
 const Header = () => {
     return(
         <HeaderWrapper>
             <Logo>
                 <img src="/public/images/white-logo.png"/>
             </Logo>
+            <LoginArea>
+                ENTRAR
+            </LoginArea>
         </HeaderWrapper>
     )
 }
