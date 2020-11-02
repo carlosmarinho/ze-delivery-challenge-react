@@ -7,20 +7,25 @@ const HeaderWrapper = styled.div`
     width: 100%;
     background: black;
     color: #fff;
-    height: 80px;
+    height: 70px;
     align-content: center;
-    align-item: cneter;
+    align-items: center;
+    padding: 0 5%;
 `;
 
 const Logo = styled.div`
 
+    img {
+        height: 40px;
+        width: 140px;
+    }
 `;
 
 const Header = () => {
     return(
         <HeaderWrapper>
             <Logo>
-                <img />
+                <img src="/public/images/white-logo.png"/>
             </Logo>
         </HeaderWrapper>
     )
