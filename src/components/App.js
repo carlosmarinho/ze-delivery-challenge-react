@@ -3,6 +3,18 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient, InMemoryCache } from 'apollo-boost';
 import { createHttpLink } from 'apollo-link-http';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+    body{
+        margin: 0;
+        font-size: 14px;
+
+        @media(min-width: 400px) {
+            font-size: 16px;
+        }
+    }
+`
 
 import Home from '../pages/home';
 import Header from './common/Header';
@@ -23,6 +35,7 @@ const client = new ApolloClient({
 const App = () => {
     return (
         <ApolloProvider client={client}>
+            <GlobalStyle />
             <Header />
             <BrowserRouter>
                 <Switch>
