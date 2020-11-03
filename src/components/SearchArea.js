@@ -38,6 +38,7 @@ const SearchBoxWrapper = styled.div`
 
     @media(min-width: 700px) {
         max-width: 592px;
+
     }
 `
 

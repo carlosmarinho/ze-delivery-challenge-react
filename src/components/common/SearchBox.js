@@ -29,7 +29,7 @@ const SearchBoxWrapper = styled.div`
     }
 
     @media(min-width: 700px) {
-        width: 90%
+        /* width: 90% */
     }
 
 `
