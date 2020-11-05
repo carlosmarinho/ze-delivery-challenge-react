@@ -1,7 +1,21 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { gql } from 'apollo-boost';
 import {Query} from 'react-apollo';
+
+
+const DistribuitorArea = styled.div`
+  display: flex;
+  background-color: #f3e8bf;
+  margin: 30px;
+  padding: 20px;
+  text-align: center;
+
+  h2{
+    width: 100%;
+  }
+`
 
 const findDistributor=gql`
 query pocSearchMethod($now: DateTime!, $algorithm: String!, $lat: String!, $long: String!) {
@@ -69,18 +83,18 @@ const DistributorList = () => {
             }}
         >
             {({ loading, error, data }) => {
-            if (loading) return <div>Carregando</div>;
+            if (loading) return <DistribuitorArea>Carregando</DistribuitorArea>;
             if (error) return `Error! ${error}`;
 
-            console.log("dattta: ", data)
             return (
-                <ul>
-                    {
+                    <DistribuitorArea>
+                      {
                         data.pocSearch.map(search => 
-                            <li key={search.id}>{search.officialName}</li>
+                            <h2>Distribuidor mais próximo: '{search.officialName}'</h2>
                         )
-                    }
-                </ul>
+                      }
+                    </DistribuitorArea>
+                    
                 // <img src={data.dog.displayImage} style={{ height: 100, width: 100 }} />
             );
         }}

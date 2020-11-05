@@ -90,6 +90,7 @@ const Home = ({ }) => {
                     <p>Suas bebidas chegam geladinhas e super rápidas, prontas para brindar!</p>
                 </div>
             </HowItWorks>
+            <DistributorList />
         </>
     )
 }

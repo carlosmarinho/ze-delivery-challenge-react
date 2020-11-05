@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { createGlobalStyle } from 'styled-components';
 import Home from '../pages/home';
+import Products from '../pages/product';
 import Footer from './common/Footer';
 import Header from './common/Header';
 
@@ -19,8 +20,6 @@ const GlobalStyle = createGlobalStyle`
 `
 
 
-// const Home = () => <div>Meu App</div>
-const Products = () => <div>Meus Produtos</div>
 
 
 
