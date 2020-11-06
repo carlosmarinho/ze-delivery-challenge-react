@@ -61,7 +61,6 @@ const ProductContent = styled.div`
 
 
 const Product = ({product: {id, title, images, productVariants}}) => {
-    console.log( "pvariants: ", productVariants)
     return(
         <Wrapper key={id}>
             <ProductImage>
