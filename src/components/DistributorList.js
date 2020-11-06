@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { gql } from 'apollo-boost';
-import {Query} from 'react-apollo';
+import { Query } from 'react-apollo';
 
 
 const DistribuitorArea = styled.div`
