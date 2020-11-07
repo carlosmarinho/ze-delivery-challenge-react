@@ -22,4 +22,15 @@ it('Should render a Footer and a Header', () => {
     expect(header.length).toBe(1);
     expect(footer.length).toBe(1);
 })
-// const appComponent = findByTestAttr(wrapper, 'component-app');
+
+it('Should have the / route', () => {
+    const wrapper = setup();
+    const homeRoute = findByTestAttr(wrapper, 'home-route');
+    expect(homeRoute.length).toBe(1)
+})
+
+it('Should have the /products route', () => {
+    const wrapper = setup();
+    const productsRoute = findByTestAttr(wrapper, 'products-route');
+    expect(productsRoute.length).toBe(1)
+})

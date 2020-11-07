@@ -19,10 +19,6 @@ const GlobalStyle = createGlobalStyle`
     }
 `
 
-
-
-
-
 const App = () => {
     return (
         <>
@@ -30,8 +26,18 @@ const App = () => {
             <Header />
             <BrowserRouter>
                 <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/products/:id" component={Products} />
+                    <Route 
+                        data-test="home-route" 
+                        exact 
+                        path="/" 
+                        component={Home} 
+                    />
+                    <Route 
+                        data-test="products-route"
+                        exact 
+                        path="/products/:id" 
+                        component={Products} 
+                    />
                 </Switch>
             </BrowserRouter>
             <Footer />
