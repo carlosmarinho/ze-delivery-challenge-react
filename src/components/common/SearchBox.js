@@ -34,7 +34,15 @@ const SearchBoxWrapper = styled.div`
 
 `
 
-const SearchBox = () => {
+const SearchBox = ({setAddress}) => {
+    const searchAddress = (e) => {
+        console.log("eee: ", e.target.value);
+        if(e.key === 'Enter') {
+            setAddress(e.target.value);
+            // props.history.push(`/products/${e.target.value}`);
+        }
+    }
+
     return (
         <SearchBoxWrapper>
             <svg viewBox="0 0 24 24" style={{}} role="presentation" >
@@ -43,7 +51,11 @@ const SearchBox = () => {
                     style={{fill: '#666'}}
                 ></path>
             </svg>                                                                             
-            <input type='text' placeholder="Inserir endereço para ver preço" />
+            <input 
+                type='text' 
+                placeholder="Inserir endereço para ver preço" 
+                onKeyDown={searchAddress}
+            />
         </SearchBoxWrapper>
     )
 }

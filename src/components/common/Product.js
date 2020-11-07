@@ -15,9 +15,6 @@ const Wrapper = styled.div`
     box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px 0px;
     margin: 0 10px;
 
-    
-
-
 `;
 
 const ProductImage = styled.div`

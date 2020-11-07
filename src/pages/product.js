@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Category from '../components/common/Category';
 
@@ -21,7 +22,9 @@ const ProductWrapper = styled.div`
 `
 
 
-const Product = ({ }) => {
+const Product = () => {
+
+    const { id } = useParams();
     return(
         <ProductWrapper>
             <Query 
@@ -33,7 +36,7 @@ const Product = ({ }) => {
                     if (error) return `Error! ${error}`;
 
                     return(
-                        data.allCategory.map(category => <Category key={category.id} {...category} />)
+                        data.allCategory.map(category => <Category key={category.id} distributorId={id} {...category} />)
                     )
                 }}
 

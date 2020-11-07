@@ -42,12 +42,12 @@ const SearchBoxWrapper = styled.div`
     }
 `
 
-const SearchArea = () => {
+const SearchArea = (props) => {
     return (
         <SearchAreaWrapper>
             <h1>Bebidas Geladas a preço de mercado na sua casa agora</h1>
             <SearchBoxWrapper>
-                <SearchBox />
+                <SearchBox {...props}/>
             </SearchBoxWrapper>
         </SearchAreaWrapper>
     )

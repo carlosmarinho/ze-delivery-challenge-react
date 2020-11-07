@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+// import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import DistributorList from '../components/DistributorList';
 import SearchArea from '../components/SearchArea';
+import { getGeolocation } from '../services/geolocation';
 
 const HowItWorks = styled.div`
     display: flex;
@@ -59,10 +61,32 @@ const HowItWorks = styled.div`
     }
 `
 
-const Home = ({ }) => {
+const Home = (props) => {
+    const [address, setAddress] = useState(null);
+    const [geoLocation, setGeolocation] = useState(null);
+    const [idDistributor, setIdDistributor] = useState(null);
+    
+    if(idDistributor) {
+        props.history.push(`/products/${idDistributor}`);
+        // return (
+        //     <Redirect 
+        //         pathname={`/products/${idDistributor}`}
+        //     />
+        // )
+    }
+
+    useEffect(() => {
+        if(address)
+            getGeolocation(address, setGeolocation)
+    },[address])
+
     return(
         <>
-            <SearchArea />
+            <SearchArea {...props}  setAddress={setAddress} />
+            {
+                geoLocation &&
+                <DistributorList geoLocation={geoLocation} setIdDistributor={setIdDistributor}/>
+            }
             <HowItWorks>
                 <h2>Como funciona o Zé Delivery?</h2>
                 <div>
@@ -90,7 +114,7 @@ const Home = ({ }) => {
                     <p>Suas bebidas chegam geladinhas e super rápidas, prontas para brindar!</p>
                 </div>
             </HowItWorks>
-            <DistributorList />
+            
         </>
     )
 }

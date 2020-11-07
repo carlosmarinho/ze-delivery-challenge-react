@@ -31,7 +31,7 @@ const CategoryProducts = styled.div`
     justify-content: ${p => p.big ? 'initial' : 'space-around'};
 
     @media(min-width: 1100px) {   
-        justify-content: space-around;
+        justify-content: ${p => p.big ? 'initial' : 'space-around'};
     }
 `
 
@@ -74,14 +74,14 @@ query poc($id: ID!, $categoryId: Int, $search: String) {
   }
 `
 
-const Category = ({ title, id }) => {
+const Category = ({ title, id, distributorId }) => {
   const [renderCategory, setRenderCategory] = useState(true);
   return(
       <CategoryWrapper renderCategory={renderCategory}>
               <Query 
                   query={findProducts}
                   variables={{
-                      "id": "532",
+                      "id": distributorId,
                       "search": "",
                       "categoryId": id
                   }}
@@ -97,7 +97,7 @@ const Category = ({ title, id }) => {
                       return(
                         <>
                           <h2>{title}</h2>
-                          <CategoryProducts big={data.poc.products.length > 5}>
+                          <CategoryProducts big={data.poc.products.length > 5} bigger={data.poc.products.length > 6}>
                               {data.poc.products.map(p => <ProductContainer key={p.id} product={p} />)}
                           </CategoryProducts>
                         </>
