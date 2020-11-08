@@ -59,13 +59,13 @@ const ProductContent = styled.div`
 
 const Product = ({product: {id, title, images, productVariants}}) => {
     return(
-        <Wrapper key={id}>
+        <Wrapper data-test="component-product" key={id}>
             <ProductImage>
                 <img src={images[0].url} alt=""/>
             </ProductImage>
             <ProductContent>
                 <h3>{title}</h3>
-                <span>R$ {productVariants[0].price}</span>
+                <span data-test="product-price">R$ {productVariants[0].price}</span>
             </ProductContent>
         </Wrapper>
     )
