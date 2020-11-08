@@ -25,7 +25,6 @@ const SearchAreaWrapper = styled.div`
             max-width: 592px;
         }
     }
-
     
 `
 
@@ -44,7 +43,7 @@ const SearchBoxWrapper = styled.div`
 
 const SearchArea = (props) => {
     return (
-        <SearchAreaWrapper>
+        <SearchAreaWrapper data-test="component-search-area">
             <h1>Bebidas Geladas a preço de mercado na sua casa agora</h1>
             <SearchBoxWrapper>
                 <SearchBox {...props}/>
