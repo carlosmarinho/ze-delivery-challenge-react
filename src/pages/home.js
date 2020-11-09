@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import DistributorList from '../components/DistributorList';
 import SearchArea from '../components/SearchArea';
 import { getGeolocation } from '../services/geolocation';
+import Spinner from '../components/common/Spinner';
 
 const HowItWorks = styled.div`
     display: flex;

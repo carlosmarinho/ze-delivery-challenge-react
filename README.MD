@@ -37,3 +37,9 @@ It's the main branch where the application is more complete.
 ## Branch apollo-boost
 
 It's the branch where started developed with apollo-boost.
+
+# Testing
+
+I didn't have enough time to implement all tests, and i have never configured the apollo to do some testing and i had a few troubles, however as you can see we have a few tests at the application. To run the tests run the command bellow:
+
+ - npm run test

@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-
 import { gql, useQuery } from '@apollo/client';
-
+import Spinner from '../components/common/Spinner';
 
 const DistribuitorArea = styled.div`
   display: flex;
@@ -84,7 +83,16 @@ const DistributorList = ({geoLocation, setIdDistributor}) => {
         }
       );
 
-      if (loading) return <DistribuitorArea>Carregando</DistribuitorArea>;
+      useEffect(() => {
+        if(data && data.pocSearch && data.pocSearch[0])
+        {
+          setIdDistributor(data.pocSearch[0].id)
+        }
+      },[data])
+
+      if (loading) return (
+        <Spinner />
+      )
       if (error) return `Error! ${error}`;
 
       // setIdDistributor()
@@ -96,11 +104,12 @@ const DistributorList = ({geoLocation, setIdDistributor}) => {
         )
       }
       
+      
+
       return(        
         <DistribuitorArea>
           {
             data.pocSearch.map(search => {
-              setIdDistributor(search.id)
               return <h2 key={search.id}>Distribuidor mais próximo: '{search.officialName}'</h2>
             }
             )
