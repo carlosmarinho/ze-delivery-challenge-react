@@ -5,10 +5,10 @@ Run the following commands
 
  - git clone https://github.com/carlosmarinho/ze-delivery-challenge-react.git
  - cd ze-delivery-challenge-react
- - npm run install
- - npm run start
+ - npm install
+ - npm start
 
-Runs the app in the development mode.\
+The last command (npm start) will run the app in the development mode.\
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 # Tecnologies used
