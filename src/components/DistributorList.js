@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { gql } from 'apollo-boost';
-import { Query } from 'react-apollo';
+import { gql, useQuery } from '@apollo/client';
 
 
 const DistribuitorArea = styled.div`
@@ -73,45 +72,41 @@ query pocSearchMethod($now: DateTime!, $algorithm: String!, $lat: String!, $long
 
 const DistributorList = ({geoLocation, setIdDistributor}) => {
     if(geoLocation) {
-      return(
-          <Query 
-              query={findDistributor} 
-              variables={{
-                  "algorithm": "NEAREST",
-                  "lat": geoLocation.lat,
-                  "long": geoLocation.long,
-                  "now": "2017-08-01T20:00:00.000Z"
-              }}
-          >
-              {({ loading, error, data }) => {
-              if (loading) return <DistribuitorArea>Carregando</DistribuitorArea>;
-              if (error) return `Error! ${error}`;
-  
-              console.log("procurando data: ", data.pocSearch);
-              // setIdDistributor()
-              if(!data.pocSearch.length) {
-                return (
-                  <DistribuitorArea>
-                    <h2>Distribuidor não encontrado na localização informada!</h2>
-                  </DistribuitorArea>
-                )
-              }
+      const { loading, error, data } = useQuery(
+        findDistributor,
+        { 
+          variables: {
+            "algorithm": "NEAREST",
+            "lat": geoLocation.lat,
+            "long": geoLocation.long,
+            "now": "2017-08-01T20:00:00.000Z"
+          } 
+        }
+      );
 
-              return (
-                      <DistribuitorArea>
-                        {
-                          data.pocSearch.map(search => {
-                            setIdDistributor(search.id)
-                            return <h2 key={search.id}>Distribuidor mais próximo: '{search.officialName}'</h2>
-                          }
-                          )
-                        }
-                      </DistribuitorArea>
-                      
-                  // <img src={data.dog.displayImage} style={{ height: 100, width: 100 }} />
-              );
-          }}
-          </Query>
+      if (loading) return <DistribuitorArea>Carregando</DistribuitorArea>;
+      if (error) return `Error! ${error}`;
+
+      // setIdDistributor()
+      if(!data.pocSearch.length) {
+        return (
+          <DistribuitorArea>
+            <h2>Distribuidor não encontrado na localização informada!</h2>
+          </DistribuitorArea>
+        )
+      }
+      
+      return(        
+        <DistribuitorArea>
+          {
+            data.pocSearch.map(search => {
+              setIdDistributor(search.id)
+              return <h2 key={search.id}>Distribuidor mais próximo: '{search.officialName}'</h2>
+            }
+            )
+          }
+        </DistribuitorArea>
+         
       )
     }
 }
