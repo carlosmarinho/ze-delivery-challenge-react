@@ -14,7 +14,6 @@ const setup = (props={}) => {
 it('Should render the component Product', () => {
     const wrapper = setup();
     const productWrapper = findByTestAttr(wrapper, 'component-product');
-    console.log("searcharea: ", productWrapper);
     expect(productWrapper.length).toBe(1);
 })
 
@@ -30,6 +29,3 @@ it('Should render an image, title and price for searching', () => {
     const price = findByTestAttr(wrapper, 'product-price')
     expect(price.length).toBe(1);
 })
-
-})
-*/

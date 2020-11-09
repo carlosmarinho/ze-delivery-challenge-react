@@ -14,7 +14,6 @@ const setup = (props={}) => {
 it('Should render the component SearchBox', () => {
     const wrapper = setup();
     const searchAreaWrapper = findByTestAttr(wrapper, 'component-search-box');
-    console.log("searcharea: ", searchAreaWrapper);
     expect(searchAreaWrapper.length).toBe(1);
 })
 

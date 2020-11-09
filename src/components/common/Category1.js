@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { gql } from 'apollo-boost';
-import { Query } from 'react-apollo'
+// import { gql } from 'apollo-boost';
+import { gql, useQuery } from '@apollo/client';
 
 import ProductContainer from './Product';
 
@@ -74,37 +74,39 @@ query poc($id: ID!, $categoryId: Int, $search: String) {
   }
 `
 
+const showProducts = (loading, error, data ) => {
+  if(loading) return <div>Carregando...</div>
+  if(error) return <div>Error...</div>
+  if(data.poc.products.length === 0 ) {
+    setRenderCategory(false);
+    return null;
+  }
+  
+  return(
+    <>
+      <h2>{title}</h2>
+      <CategoryProducts big={data.poc.products.length > 5} bigger={data.poc.products.length > 6}>
+          {data.poc.products.map(p => <ProductContainer key={p.id} product={p} />)}
+      </CategoryProducts>
+    </>
+  );
+}
+
 const Category = ({ title, id, distributorId }) => {
   const [renderCategory, setRenderCategory] = useState(true);
+  const { loading, error, data } = useQuery(
+    findProducts,
+    { 
+      variables: { 
+        id: distributorId, 
+        search: "",
+        categoryId: id
+      } 
+    }
+  );
   return(
-      <CategoryWrapper data-test="component-category" renderCategory={renderCategory}>
-              <Query 
-                  query={findProducts}
-                  variables={{
-                      "id": distributorId,
-                      "search": "",
-                      "categoryId": id
-                  }}
-              >
-                  {({ loading, error, data }) => {
-                      if(loading) return <div>Carregando...</div>
-                      if(error) return <div>Error...</div>
-                      if(data.poc.products.length === 0 ) {
-                        setRenderCategory(false);
-                        return null;
-                      }
-                      
-                      return(
-                        <>
-                          <h2>{title}</h2>
-                          <CategoryProducts big={data.poc.products.length > 5} bigger={data.poc.products.length > 6}>
-                              {data.poc.products.map(p => <ProductContainer key={p.id} product={p} />)}
-                          </CategoryProducts>
-                        </>
-                      );
-                  }}
-
-              </Query>
+      <CategoryWrapper data-test="component-category" renderCategory={renderCategory}>              
+        {showProducts(loading, error, data)}
       </CategoryWrapper>
   )
 }

@@ -12,6 +12,7 @@
   "author": "Carlos Marinho",
   "license": "ISC",
   "dependencies": {
+    "@apollo/client": "^3.2.5",
     "@babel/plugin-syntax-jsx": "^7.12.1",
     "apollo-boost": "^0.4.9",
     "axios": "^0.21.0",
