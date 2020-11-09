@@ -38,7 +38,7 @@ const Header = () => {
     return(
         <HeaderWrapper>
             <Logo>
-                <img src="/public/images/white-logo.png"/>
+                <a href="/"><img src="/public/images/white-logo.png"/></a>
             </Logo>
             <LoginArea>
                 ENTRAR
