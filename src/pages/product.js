@@ -3,8 +3,11 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Category from '../components/common/Category';
 
-import { gql } from 'apollo-boost';
-import { Query } from 'react-apollo';
+import { gql, useQuery } from '@apollo/client';
+
+
+// import { gql } from 'apollo-boost';
+// import { Query } from 'react-apollo';
 
 const findCategorys=gql`
 query allCategoriesSearch {
@@ -21,13 +24,26 @@ const ProductWrapper = styled.div`
     flex-direction: column;
 `
 
+const renderCategories = (loading, error, data, id) => {
+    if (loading) return <div>Carregando Categorias..</div>;
+    if (error) return `Error! ${error}`;
+
+    return(
+        // data.allCategory.map(category => <div>id: {category.id}</div>)
+        data.allCategory.map(category => <Category key={category.id} distributorId={id} {...category} />)
+    )
+}
 
 const Product = () => {
 
     const { id } = useParams();
+    const { loading, error, data } = useQuery(
+        findCategorys,
+    );
     return(
         <ProductWrapper>
-            <Query 
+            {renderCategories(loading, error, data, id)}
+            {/* <Query 
                 query={findCategorys}
                 
             >
@@ -40,7 +56,7 @@ const Product = () => {
                     )
                 }}
 
-            </Query>
+            </Query> */}
         </ProductWrapper>
     )
 }

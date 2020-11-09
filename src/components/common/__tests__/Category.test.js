@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { MockedProvider } from '@apollo/client/testing';
 import renderer from 'react-test-renderer';
-import Category, { findProducts } from '../Category1';
+import Category, { findProducts } from '../Category';
 
 import { findByTestAttr } from '../../../test/testUtil';
 
@@ -37,15 +37,19 @@ const defaultProps = {}
 
 const setup = (props={}) => {
     const setupProps = {...props, ...defaultProps}
-    return shallow(<Category { ...setupProps } />);
+    return renderer.create(
+        <MockedProvider mocks={mocks} addTypename={false}>
+            <Category { ...setupProps } />
+        </MockedProvider>
+    );
 }
 
 
-// it('Should render the component Category', () => {
-//     const wrapper = setup();
-//     const categoryWrapper = findByTestAttr(wrapper, 'component-category');
-//     expect(categoryWrapper.length).toBe(1);
-// });
+it('Should render the component Category', () => {
+    const wrapper = setup();
+    const tree = wrapper.toJSON();
+    expect(tree.props['data-test']).toBe('component-category');
+});
 
 it('Should get the state of loading', async () => {
     const component = renderer.create(
@@ -55,7 +59,6 @@ it('Should get the state of loading', async () => {
     );
 
     const tree = component.toJSON();
-    
     expect(tree.children[0].children).toContain('Carregando...');
 
 })
