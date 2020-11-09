@@ -1,9 +1,10 @@
 # Installation
 
-git clone https://github.com/carlosmarinho/ze-delivery-challenge-react.git
 
 Run the following commands
 
+ - git clone https://github.com/carlosmarinho/ze-delivery-challenge-react.git
+ - cd ze-delivery-challenge-react
  - npm run install
  - npm run start
 
